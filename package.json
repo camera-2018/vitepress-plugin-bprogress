@@ -1,0 +1,33 @@
+{
+  "name": "vitepress-plugin-bprogress",
+  "version": "1.0.0",
+  "description": "A VitePress plugin for beautiful progress bars using bprogress",
+  "main": "src/index.ts",
+  "module": "src/index.ts",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "files": [
+    "src"
+  ],
+  "keywords": [
+    "vitepress",
+    "plugin",
+    "progress",
+    "bprogress",
+    "loading"
+  ],
+  "devDependencies": {
+    "@types/bun": "latest",
+    "tsdown": "^0.13.4",
+    "vitepress": "v2.0.0-alpha.9"
+  },
+  "peerDependencies": {
+    "typescript": "^5",
+    "vitepress": "^1.0.0 || ^2.0.0"
+  },
+  "dependencies": {
+    "@bprogress/core": "^1.3.4"
+  }
+}
