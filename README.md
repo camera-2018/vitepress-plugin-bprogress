@@ -30,7 +30,10 @@ Create or update your theme file at `.vitepress/theme/index.ts`:
 ```ts
 import DefaultTheme from 'vitepress/theme'
 import vitepressBprogress from 'vitepress-plugin-bprogress'
-import 'vitepress-plugin-bprogress/style'
+// Import CSS styles (both imports work)
+import 'vitepress-plugin-bprogress/style.css'
+// or
+// import 'vitepress-plugin-bprogress/style'
 import type { Theme } from 'vitepress'
 
 export default {
@@ -62,7 +65,10 @@ And setup in your theme file `.vitepress/theme/index.ts`:
 ```ts
 import DefaultTheme from 'vitepress/theme'
 import vitepressBprogress from 'vitepress-plugin-bprogress'
-import 'vitepress-plugin-bprogress/style'
+// Import CSS styles (both imports work)
+import 'vitepress-plugin-bprogress/style.css'
+// or
+// import 'vitepress-plugin-bprogress/style'
 import type { Theme } from 'vitepress'
 
 export default {
@@ -95,7 +101,10 @@ The plugin comes with sensible defaults but can be customized:
 ```ts
 import DefaultTheme from 'vitepress/theme'
 import vitepressBprogress from 'vitepress-plugin-bprogress'
-import 'vitepress-plugin-bprogress/style'
+// Import CSS styles (both imports work)
+import 'vitepress-plugin-bprogress/style.css'
+// or
+// import 'vitepress-plugin-bprogress/style'
 import type { Theme } from 'vitepress'
 
 export default {
