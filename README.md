@@ -1,8 +1,17 @@
 # vitepress-plugin-bprogress
 
-A VitePress plugin for beautiful progress bars using [bprogress](https://github.com/bprogress/bprogress).
+A beautiful loading progress bar plugin for VitePress that integrates seamlessly with VitePress themes using [@bprogress/core](https://bprogress.dev).
 
-## Installation
+## ✨ Features
+
+- 🚀 **Fast & Lightweight** - Minimal bundle size with optimal performance
+- 🎨 **Theme Integration** - Automatically uses VitePress theme colors
+- 🌗 **Dark Mode Support** - Seamlessly adapts to light/dark themes
+- 📱 **Mobile Friendly** - Works perfectly on all devices
+- ⚙️ **Highly Configurable** - Customize speed, easing, and appearance
+- 🔧 **Easy Setup** - Simple one-line installation
+
+## 📦 Installation
 
 ```bash
 npm install vitepress-plugin-bprogress
@@ -12,9 +21,28 @@ pnpm add vitepress-plugin-bprogress
 bun add vitepress-plugin-bprogress
 ```
 
-## Usage
+## 🚀 Quick Start
 
-Add the plugin to your VitePress configuration:
+### Method 1: Theme Integration (Recommended)
+
+Create or update your theme file at `.vitepress/theme/index.ts`:
+
+```ts
+import DefaultTheme from 'vitepress/theme'
+import vitepressBprogress from 'vitepress-plugin-bprogress'
+import type { Theme } from 'vitepress'
+
+export default {
+  extends: DefaultTheme,
+  enhanceApp(ctx) {
+    vitepressBprogress(ctx)
+  }
+} satisfies Theme
+```
+
+### Method 2: Direct Import
+
+If you prefer to import in your config file:
 
 ```ts
 // .vitepress/config.ts
@@ -23,59 +51,78 @@ import vitepressBprogress from 'vitepress-plugin-bprogress'
 
 export default defineConfig({
   // ... your config
-  enhanceApp({ app, router, siteData }) {
-    vitepressBprogress({ app, router, siteData })
+  enhanceApp(ctx) {
+    vitepressBprogress(ctx)
   }
 })
 ```
 
-The progress bar will automatically show during route changes in your VitePress site.
+That's it! The progress bar will automatically show during route changes in your VitePress site.
 
-## Configuration
+## ⚙️ Configuration
 
-You can configure the progress bar using BProgress options:
+The plugin comes with sensible defaults but can be customized:
+
+### Default Settings
 
 ```ts
-// .vitepress/config.ts  
-import { defineConfig } from 'vitepress'
-import vitepressBprogress from 'vitepress-plugin-bprogress'
-
-export default defineConfig({
-  enhanceApp({ app, router, siteData }) {
-    const BProgress = vitepressBprogress({ app, router, siteData })
-    
-    // Configure BProgress options
-    BProgress?.configure({ 
-      showSpinner: true,    // Show loading spinner
-      minimum: 0.08,        // Minimum progress (0.08-1)
-      speed: 200,           // Animation speed
-      trickle: true,        // Auto increment
-      trickleSpeed: 200,    // Trickle speed
-      easing: 'linear',     // Animation easing
-      direction: 'ltr'      // Progress direction
-    })
-  }
-})
+{
+  showSpinner: false,     // No spinner for clean look
+  speed: 400,            // Smooth 400ms animations
+  easing: 'linear',      // Linear easing
+  parent: '.Layout'      // Mounted on VitePress Layout
+}
 ```
 
-## Custom Styling
+### Custom Configuration
 
-You can customize the progress bar appearance by overriding the CSS:
+```ts
+import DefaultTheme from 'vitepress/theme'
+import vitepressBprogress from 'vitepress-plugin-bprogress'
+import type { Theme } from 'vitepress'
+
+export default {
+  extends: DefaultTheme,
+  enhanceApp(ctx) {
+    const bProgress = vitepressBprogress(ctx)
+    
+    // Custom configuration (optional)
+    if (bProgress) {
+      bProgress.configure({
+        showSpinner: true,      // Show loading spinner
+        speed: 300,            // Animation speed in ms
+        easing: 'ease-out',    // CSS easing function
+        minimum: 0.1,          // Minimum progress (0-1)
+        trickle: true,         // Auto increment
+        trickleSpeed: 200,     // Trickle speed
+        direction: 'ltr'       // Progress direction
+      })
+    }
+  }
+} satisfies Theme
+```
+
+## 🎨 Theme Integration
+
+The plugin automatically integrates with VitePress themes:
+
+- **🎨 Colors**: Uses `--vp-c-brand-1` for progress bar color
+- **🌗 Dark Mode**: Automatically adapts to theme changes  
+- **📐 Z-Index**: Uses `--vp-z-index-layout-top` for proper layering
+
+## 🎯 Custom Styling
+
+Override CSS variables for further customization:
 
 ```css
-/* Override default BProgress styles */
+:root {
+  --bprogress-color: #ff6b6b;     /* Custom color */
+  --bprogress-height: 4px;        /* Thicker progress bar */
+}
+
+/* Fine-grained control */
 .bprogress .bar {
-  background: #your-color !important;
-  height: 3px !important;
-}
-
-.bprogress .peg {
-  box-shadow: 0 0 10px #your-color, 0 0 5px #your-color !important;
-}
-
-.bprogress .spinner-icon {
-  border-top-color: #your-color !important;
-  border-left-color: #your-color !important;
+  background: linear-gradient(90deg, #ff6b6b, #4ecdc4) !important;
 }
 ```
 
