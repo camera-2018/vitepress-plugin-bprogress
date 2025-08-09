@@ -1,6 +1,6 @@
 import { BProgress } from '@bprogress/core'
 import type { EnhanceAppContext } from 'vitepress'
-import './index.css'
+import './style.css'
 
 const vitepressBprogress = (ctx: EnhanceAppContext) => {
   if (typeof window === 'undefined') return

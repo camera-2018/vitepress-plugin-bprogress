@@ -1,6 +1,6 @@
 {
   "name": "vitepress-plugin-bprogress",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A beautiful loading progress bar plugin for VitePress that integrates seamlessly with VitePress themes",
   "author": "camera-2018",
   "license": "MIT",
@@ -21,7 +21,7 @@
       "import": "./lib/index.js",
       "require": "./lib/index.cjs"
     },
-    "./style": "./lib/index.css"
+    "./style": "./lib/style.css"
   },
   "types": "lib/index.d.ts",
   "files": [

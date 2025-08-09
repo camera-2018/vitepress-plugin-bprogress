@@ -25,6 +25,7 @@ Create or update your theme file at `.vitepress/theme/index.ts`:
 ```ts
 import DefaultTheme from 'vitepress/theme'
 import vitepressBprogress from 'vitepress-plugin-bprogress'
+import 'vitepress-plugin-bprogress/style'
 import type { Theme } from 'vitepress'
 
 export default {
@@ -35,25 +36,35 @@ export default {
 } satisfies Theme
 ```
 
-### Method 2: Direct Import
+### Method 2: VitePress Config + Theme
 
-If you prefer to import in your config file:
+Configure VitePress in `.vitepress/config.ts`:
 
 ```ts
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
   // ... other config
+  ssr: {
+    noExternal: ['vitepress-plugin-bprogress']
+  }
 })
 ```
 
-And then add to your theme:
+And setup in your theme file `.vitepress/theme/index.ts`:
 
 ```ts
+import DefaultTheme from 'vitepress/theme'
 import vitepressBprogress from 'vitepress-plugin-bprogress'
+import 'vitepress-plugin-bprogress/style'
+import type { Theme } from 'vitepress'
 
-// In your enhanceApp function
-vitepressBprogress({ app, router, siteData })
+export default {
+  extends: DefaultTheme,
+  enhanceApp(ctx) {
+    vitepressBprogress(ctx)
+  }
+} satisfies Theme
 ```
 
 ## Navigation Test

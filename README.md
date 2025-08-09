@@ -30,6 +30,7 @@ Create or update your theme file at `.vitepress/theme/index.ts`:
 ```ts
 import DefaultTheme from 'vitepress/theme'
 import vitepressBprogress from 'vitepress-plugin-bprogress'
+import 'vitepress-plugin-bprogress/style'
 import type { Theme } from 'vitepress'
 
 export default {
@@ -40,21 +41,36 @@ export default {
 } satisfies Theme
 ```
 
-### Method 2: Direct Import
+### Method 2: VitePress Config + Theme
 
-If you prefer to import in your config file:
+Configure VitePress in `.vitepress/config.ts`:
 
 ```ts
 // .vitepress/config.ts
 import { defineConfig } from 'vitepress'
-import vitepressBprogress from 'vitepress-plugin-bprogress'
 
 export default defineConfig({
   // ... your config
+  ssr: {
+    noExternal: ['vitepress-plugin-bprogress']
+  }
+})
+```
+
+And setup in your theme file `.vitepress/theme/index.ts`:
+
+```ts
+import DefaultTheme from 'vitepress/theme'
+import vitepressBprogress from 'vitepress-plugin-bprogress'
+import 'vitepress-plugin-bprogress/style'
+import type { Theme } from 'vitepress'
+
+export default {
+  extends: DefaultTheme,
   enhanceApp(ctx) {
     vitepressBprogress(ctx)
   }
-})
+} satisfies Theme
 ```
 
 That's it! The progress bar will automatically show during route changes in your VitePress site.
@@ -79,6 +95,7 @@ The plugin comes with sensible defaults but can be customized:
 ```ts
 import DefaultTheme from 'vitepress/theme'
 import vitepressBprogress from 'vitepress-plugin-bprogress'
+import 'vitepress-plugin-bprogress/style'
 import type { Theme } from 'vitepress'
 
 export default {

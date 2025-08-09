@@ -22,6 +22,7 @@ You can override the default configuration by calling `configure()` on the retur
 ```ts
 import DefaultTheme from 'vitepress/theme'
 import vitepressBprogress from 'vitepress-plugin-bprogress'
+import 'vitepress-plugin-bprogress/style'
 import type { Theme } from 'vitepress'
 
 export default {
