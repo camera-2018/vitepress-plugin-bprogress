@@ -1,7 +1,17 @@
 {
   "name": "vitepress-plugin-bprogress",
   "version": "1.0.0",
-  "description": "A VitePress plugin for beautiful progress bars using bprogress",
+  "description": "A beautiful loading progress bar plugin for VitePress that integrates seamlessly with VitePress themes",
+  "author": "camera-2018",
+  "license": "MIT",
+  "homepage": "https://github.com/camera-2018/vitepress-plugin-bprogress#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/camera-2018/vitepress-plugin-bprogress.git"
+  },
+  "bugs": {
+    "url": "https://github.com/camera-2018/vitepress-plugin-bprogress/issues"
+  },
   "main": "lib/index.cjs",
   "module": "lib/index.js",
   "type": "module",
@@ -22,14 +32,19 @@
     "build": "tsdown",
     "build:docs": "vitepress build docs",
     "dev": "vitepress dev docs",
-    "preview": "vitepress preview docs"
+    "preview": "vitepress preview docs",
+    "prepublishOnly": "bun run build"
   },
   "keywords": [
     "vitepress",
     "plugin",
     "progress",
+    "progress-bar",
     "bprogress",
-    "loading"
+    "loading",
+    "vue",
+    "typescript",
+    "theme"
   ],
   "devDependencies": {
     "@types/bun": "latest",

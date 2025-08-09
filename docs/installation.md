@@ -10,6 +10,12 @@ Install the plugin via npm:
 npm install vitepress-plugin-bprogress
 ```
 
+Install the plugin via bun:
+
+```bash
+bun install vitepress-plugin-bprogress
+```
+
 ## Setup
 
 ### Method 1: Theme Integration (Recommended)
