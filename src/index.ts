@@ -47,15 +47,26 @@ const vitepressBprogress = (ctx: EnhanceAppContext) => {
     // Cache original route handlers to preserve existing functionality
     const cacheBeforeRouteChange = r.onBeforeRouteChange as undefined | ((to: any) => void)
     const cacheAfterRouteChange = r.onAfterRouteChange as undefined | ((to: any) => void)
+    // Support for legacy VitePress versions
+    const cacheAfterRouteChanged = r.onAfterRouteChanged as undefined | ((to: any) => void)
 
     // Hook into VitePress router events
     r.onBeforeRouteChange = (to: any) => {
       BProgress.start()
       cacheBeforeRouteChange?.(to)
     }
-    r.onAfterRouteChange = (to: any) => {
+    
+    // Support both onAfterRouteChange (new) and onAfterRouteChanged (legacy)
+    const afterRouteHandler = (to: any) => {
       BProgress.done()
       cacheAfterRouteChange?.(to)
+      cacheAfterRouteChanged?.(to)
+    }
+    
+    r.onAfterRouteChange = afterRouteHandler
+    // Also set legacy handler for older versions
+    if (r.onAfterRouteChanged) {
+      r.onAfterRouteChanged = afterRouteHandler
     }
   }
   
